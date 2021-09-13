@@ -5,7 +5,7 @@ use crate::entity::*;
 use crate::tile::*;
 use crate::menu::*;
 use crate::blackboard::*;
-//use std::time::Duration;
+use std::time::Duration;
 use sdl2::rect::Rect;
 use sdl2::pixels::Color;
 use roguelike::SDLCore;
@@ -195,9 +195,19 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, blackb
 
                 // If the test enemy's walkbox intersects with the player walkbox...
                 let wb_test = enemy.box_es.get_hitbox(enemy.pos);
+
+                let mut time_since_attack = Duration::new(69, 420); // haha funny number
+                match game.player.last_attack_time{
+                    Some(time) =>{
+                        time_since_attack = time.elapsed();
+                    },
+                    None=>{
+
+                    }
+                }
                 // Attempt at collision with attackbox
                 let mut player_attack = game.player.box_es.get_attackbox(game.player.pos, game.player.dir);
-                if game.player.is_attacking {
+                if game.player.is_attacking && time_since_attack.as_millis() % 250 > 100 && !game.player.is_charging || time_since_attack.as_millis() % 1000 > 800 && game.player.is_charging{
                     if game.player.is_charging {
                         game.player.charge_box.charge = true;
                         player_attack = game.player.charge_box.get_attackbox(game.player.pos, game.player.dir);

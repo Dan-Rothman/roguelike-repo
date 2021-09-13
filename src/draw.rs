@@ -669,7 +669,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                     }
                     Direction::Left => {
                         if game.player.recently_attacked() || game.player.recently_charged() {
-                            if time_since_attack.as_millis() % 250 < 50 && game.player.is_attacking{
+                            if time_since_attack.as_millis() % 250 < 50 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_left_at01, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val - 8,
@@ -677,7 +677,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                                     64+8, 64)
                                 )?;
                             }
-                            else if time_since_attack.as_millis() % 250 < 100 && game.player.is_attacking{
+                            else if time_since_attack.as_millis() % 250 < 100 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_left_at02, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val - 36,
@@ -685,7 +685,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                                     64+36, 64)
                                 )?;
                             }
-                            else if time_since_attack.as_millis() % 250  < 250 && game.player.is_attacking{
+                            else if time_since_attack.as_millis() % 250  < 250 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_left_at03, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val - 60,
@@ -746,7 +746,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                     }
                     Direction::Right => {
                         if game.player.recently_attacked() || game.player.recently_charged(){
-                            if time_since_attack.as_millis() % 250 < 50 && game.player.is_attacking{
+                            if time_since_attack.as_millis() % 250 < 50 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_right_at01, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val,
@@ -754,7 +754,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                                     64+8, 64)
                                 )?;
                             }
-                            else if time_since_attack.as_millis() % 250 < 100 && game.player.is_attacking{
+                            else if time_since_attack.as_millis() % 250 < 100 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_right_at02, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val,
@@ -762,7 +762,7 @@ pub fn base(game : &mut Game, core : &mut SDLCore, menu : &mut MenuState, &debug
                                     64+36, 64)
                                 )?;
                             }
-                            else if time_since_attack.as_millis() % 250  < 250 && game.player.is_attacking{
+                            else if time_since_attack.as_millis() % 250  < 250 && game.player.is_attacking && !game.player.is_charging{
                             core.wincan.copy(&slime_right_at03, None,
                                 Rect::new(
                                     game.player.get_pos_x() - 35 + x_val,
